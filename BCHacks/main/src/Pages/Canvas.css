@@ -13,12 +13,16 @@
     border-color 0.2s ease-in-out,
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
+    width: 3vh;
+    height: 3vh;
+    font-weight: bolder;
+    font-size: 1.25rem;
 }
 
 .button:hover {
     background-color: #313333;
     border-color: #596377;
-    transform: scale(1.05); /* Button scales up slightly */
+    transform: scale(1.3); /* Button scales up slightly */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds subtle shadow */
 }
 

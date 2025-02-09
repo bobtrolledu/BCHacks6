@@ -44,7 +44,7 @@ function Canvas() {
                         onClick={handleButtonClick}
                         className="button"
                     >
-                        Upload File
+                        +
                     </button>
                     <div className="tooltip-content">Click to upload a file</div>
                 </div>
