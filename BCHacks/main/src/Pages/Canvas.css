@@ -22,12 +22,12 @@
 .button:hover {
     background-color: #313333;
     border-color: #596377;
-    transform: scale(1.3); /* Button scales up slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds subtle shadow */
+    transform: scale(1.3); /* Button scales up */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:active {
-    transform: scale(0.98); /* Slight scale down when button is pressed */
+    transform: scale(0.98); /* Slight scale down when pressed */
 }
 
 .button:focus {
@@ -71,4 +71,36 @@
     border-width: 5px;
     border-style: solid;
     border-color: #000 transparent transparent transparent;
+}
+
+/* Spinner Styles */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Upload Status Styles */
+.upload-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-message {
+    font-size: 1.25rem;
+}
+
+/* File Selected Styles */
+.file-selected {
+    font-size: 1.25rem;
+    text-align: center;
 }

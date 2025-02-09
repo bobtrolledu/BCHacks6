@@ -1,10 +1,12 @@
 // src/Canvas.jsx
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import AnimatedContent from '../blocks/Animations/AnimatedContent/AnimatedContent';
-import './Canvas.css'; // Or include the CSS in your global CSS file
+import './Canvas.css';
 
 function Canvas() {
     const fileInputRef = useRef(null);
+    const [uploading, setUploading] = useState(false);
+    const [uploadedFileName, setUploadedFileName] = useState('');
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
@@ -13,8 +15,12 @@ function Canvas() {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            alert(`File selected: ${file.name}`);
-            // Add your file upload logic here.
+            setUploadedFileName(file.name);
+            setUploading(true);
+            // Simulate an upload delay (3 seconds)
+            setTimeout(() => {
+                setUploading(false);
+            }, 3000);
         }
     };
 
@@ -39,15 +45,27 @@ function Canvas() {
                 scale={1.1}
                 threshold={0.2}
             >
-                <div className="tooltip-container">
-                    <button
-                        onClick={handleButtonClick}
-                        className="button"
-                    >
-                        +
-                    </button>
-                    <div className="tooltip-content">Click to upload a file</div>
-                </div>
+                {uploading ? (
+                    <div className="upload-status">
+                        <div className="spinner"></div>
+                        <div className="upload-message">
+                            Uploading {uploadedFileName}...
+                        </div>
+                    </div>
+                ) : uploadedFileName ? (
+                    <div className="file-selected">
+                        File Selected: {uploadedFileName}
+                    </div>
+                ) : (
+                    <div className="tooltip-container">
+                        <button onClick={handleButtonClick} className="button">
+                            +
+                        </button>
+                        <div className="tooltip-content">
+                            Click to upload a file
+                        </div>
+                    </div>
+                )}
                 <input
                     type="file"
                     ref={fileInputRef}
