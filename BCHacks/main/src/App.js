@@ -1,12 +1,18 @@
 import React from "react";
 import axios from "axios";
 
+
+
+
+
 class App extends React.Component {
     state = {
         details: [],
         user: "",
         quote: "",
     };
+
+
 
     componentDidMount() {
         let data;
@@ -105,7 +111,7 @@ class App extends React.Component {
 
                 <hr
                     style={{
-                        color: "#000000",
+                        color: "#040404",
                         backgroundColor: "#000000",
                         height: 0.5,
                         borderColor: "#000000",
@@ -132,6 +138,7 @@ class App extends React.Component {
                     </div>
                 ))}
             </div>
+
         );
     }
 }
