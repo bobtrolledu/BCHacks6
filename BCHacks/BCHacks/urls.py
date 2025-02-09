@@ -1,8 +1,12 @@
 from django.contrib import admin
+from django.template.context_processors import static
 from django.urls import path, include
-from Chromesthesia.views import *
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('wel/', ReactView.as_view(), name="something"),
-]
+    path('api/', include('api.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

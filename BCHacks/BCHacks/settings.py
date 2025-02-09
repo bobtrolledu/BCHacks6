@@ -26,11 +26,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-wrysv9m$$)u^v2su(tla5!j5ba8&ef(6$uxv5duk+7yb8y&k@('
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = '*' # <-------- this
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+MEDIA_ROOT = os.path.join(
+    BASE_DIR,
+    'media'
+)
+
+MEDIA_URL = '/media/'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.AllowAny']}
 # Application definition
@@ -44,7 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Chromesthesia.apps.ChromesthesiaConfig',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [

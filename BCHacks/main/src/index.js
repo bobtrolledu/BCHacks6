@@ -18,6 +18,7 @@ import LandingPage from "./Pages/LandingPage";
 import Canvas from "./Pages/Canvas";
 import Gallery from "./Pages/Gallery";
 import Settings from "./Pages/Settings";
+import App from "./App";
 
 // Replace your Go() function with one that navigates by updating the URL
 function Go(path) {
@@ -43,7 +44,7 @@ root.render(
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/canvas" element={<Canvas />} />
                 <Route path="/gallery" element={<Gallery />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/settings" element={<App />} />
             </Routes>
             {/* Render the Dock outside the Routes so that it always appears */}
             <Dock

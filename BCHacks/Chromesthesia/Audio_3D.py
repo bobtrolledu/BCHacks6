@@ -1,13 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from pydub.utils import which
 from scipy.io import wavfile
 from pydub import AudioSegment
 from BPM_detector import analyze_bpm
 from mpl_toolkits.mplot3d import Axes3D  # For 3D plotting
 
+ffmpeg_path = which("ffmpeg")
+if ffmpeg_path is None:
+    ffmpeg_path = "C://ffmpeg//bin//fmeg.exe"
+AudioSegment.converter=ffmpeg_path
 # Filepath (Ensure this file exists)
-filepath = "/Users/ethanhayne/Desktop/Music/Moon.mp3"
+filepath = "/Users/Anson/Downloads/Mozart - Lacrimosa.mp3"
 print(f'Your File path is {filepath}')
 
 
@@ -120,7 +125,7 @@ ax.set_zlabel("")
 plt.title("3D Fractal Sound Spiral", fontsize=50, color="white", fontweight="bold")
 
 # Save and Show
-spiral_filepath = "/Users/ethanhayne/Desktop/Music/3D_fractal_spiral_black_smooth_spiral.png"
-plt.savefig(spiral_filepath, dpi=400, bbox_inches="tight", facecolor="black")
+#spiral_filepath = "/Users/ethanhayne/Desktop/Music/3D_fractal_spiral_black_smooth_spiral.png"
+#plt.savefig(spiral_filepath, dpi=400, bbox_inches="tight", facecolor="black")
 plt.show()
-print(f"3D Fractal Sound Spiral saved at: {spiral_filepath}")
+#print(f"3D Fractal Sound Spiral saved at: {spiral_filepath}")
