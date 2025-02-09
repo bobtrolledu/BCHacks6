@@ -21,13 +21,19 @@ const App = () => {
 
   return (
     <div>
-      <ul>
+      <div style={{
+    display: "flex", // Use Flexbox instead of <ul>
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "20px",
+    padding: "20px",
+  }}>
         {data.map((item) => (
             <div>
               <TiltedCard
                 imageSrc={ item.image }
                 altText=""
-                captionText=""
+                captionText= {item.description}
                 containerHeight="300px"
                 containerWidth="300px"
                 imageHeight="300px"
@@ -44,7 +50,7 @@ const App = () => {
               />
             </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,30 @@
-import React, { useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import AnimatedContent from "../blocks/Animations/AnimatedContent/AnimatedContent";
 import "./Canvas.css";
+import TiltedCard from "../blocks/Components/TiltedCard/TiltedCard";
 
 const Canvas = () => {
     const fileInputRef = useRef(null); // ✅ Reference to hidden file input
+
+    const [latestSlate, setLatestSlate] = useState(null);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  useEffect(() => {
+    const fetchLatestSlate = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/slates/');
+        const result = await response.json();
+        if (result.length > 0) {
+          setLatestSlate(result[result.length - 1]); // Get the latest slate
+        }
+      } catch (error) {
+        console.error('Error fetching latest slate:', error);
+      }
+    };
+    fetchLatestSlate();
+  }, [refreshTrigger]);
+
 
     const handleFileSelect = async (e) => {
         const file = e.target.files[0];
@@ -21,6 +41,8 @@ const Canvas = () => {
             });
 
             console.log("Upload success:", response.data);
+            setRefreshTrigger(prev => prev + 1);
+
         } catch (error) {
             console.error("Upload error:", error.response?.data || error.message);
         }
@@ -41,6 +63,23 @@ const Canvas = () => {
                 justifyContent: "center",
             }}
         >
+            {latestSlate && (
+        <TiltedCard
+          imageSrc={latestSlate.image}
+          altText=""
+          captionText={`${latestSlate.name}:\n${latestSlate.description}`}
+          containerHeight="300px"
+          containerWidth="300px"
+          imageHeight="300px"
+          imageWidth="300px"
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          showMobileWarning={false}
+          showTooltip={true}
+          displayOverlayContent={true}
+          overlayContent={<p className="tilted-card-demo-text"></p>}
+        />
+      )}
             <AnimatedContent
                 distance={150}
                 direction="vertical"
@@ -50,6 +89,7 @@ const Canvas = () => {
                 animateOpacity
                 scale={1.1}
                 threshold={0.2}
+                refreshTrigger={refreshTrigger}
             >
                 <input
                     type="file"
