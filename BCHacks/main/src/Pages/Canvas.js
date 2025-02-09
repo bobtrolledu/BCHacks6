@@ -1,5 +1,7 @@
 // src/Canvas.jsx
 import React, { useRef } from 'react';
+import AnimatedContent from '../blocks/Animations/AnimatedContent/AnimatedContent';
+import './Canvas.css'; // Or include the CSS in your global CSS file
 
 function Canvas() {
     const fileInputRef = useRef(null);
@@ -27,19 +29,32 @@ function Canvas() {
                 justifyContent: 'center',
             }}
         >
-            <div>
-                <button
-                    onClick={handleButtonClick}
-                >
-                    Upload File
-                </button>
+            <AnimatedContent
+                distance={150}
+                direction="vertical"
+                reverse={false}
+                config={{ tension: 80, friction: 20 }}
+                initialOpacity={0.2}
+                animateOpacity
+                scale={1.1}
+                threshold={0.2}
+            >
+                <div className="tooltip-container">
+                    <button
+                        onClick={handleButtonClick}
+                        className="button"
+                    >
+                        Upload File
+                    </button>
+                    <div className="tooltip-content">Click to upload a file</div>
+                </div>
                 <input
                     type="file"
                     ref={fileInputRef}
                     onChange={handleFileChange}
                     style={{ display: 'none' }}
                 />
-            </div>
+            </AnimatedContent>
         </div>
     );
 }
