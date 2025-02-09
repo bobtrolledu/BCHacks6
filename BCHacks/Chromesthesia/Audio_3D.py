@@ -125,7 +125,8 @@ ax.set_zlabel("")
 plt.title("3D Fractal Sound Spiral", fontsize=50, color="white", fontweight="bold")
 
 # Save and Show
-#spiral_filepath = "/Users/ethanhayne/Desktop/Music/3D_fractal_spiral_black_smooth_spiral.png"
-#plt.savefig(spiral_filepath, dpi=400, bbox_inches="tight", facecolor="black")
+spiral_filepath = "../media/"
+plt.savefig(spiral_filepath, dpi=400, bbox_inches="tight", facecolor="black")
+
 plt.show()
 #print(f"3D Fractal Sound Spiral saved at: {spiral_filepath}")

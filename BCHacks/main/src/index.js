@@ -43,8 +43,8 @@ root.render(
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/canvas" element={<Canvas />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/settings" element={<App />} />
+                <Route path="/gallery" element={<App />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
             {/* Render the Dock outside the Routes so that it always appears */}
             <Dock

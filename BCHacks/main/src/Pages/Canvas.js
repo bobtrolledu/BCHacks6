@@ -1,49 +1,44 @@
-// src/Canvas.jsx
-import React, { useRef, useState } from 'react';
-import AnimatedContent from '../blocks/Animations/AnimatedContent/AnimatedContent';
-import './Canvas.css';
+import React, { useRef } from "react";
+import axios from "axios";
+import AnimatedContent from "../blocks/Animations/AnimatedContent/AnimatedContent";
+import "./Canvas.css";
 
-function Canvas() {
-    const fileInputRef = useRef(null);
-    const [uploading, setUploading] = useState(false);
-    const [uploadedFileName, setUploadedFileName] = useState('');
+const Canvas = () => {
+    const fileInputRef = useRef(null); // ✅ Reference to hidden file input
 
-    const handleButtonClick = () => {
-        fileInputRef.current.click();
+    const handleFileSelect = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("audio", file);
+
+        try {
+            const response = await axios.post("http://localhost:8000/api/audiofile/", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            console.log("Upload success:", response.data);
+        } catch (error) {
+            console.error("Upload error:", error.response?.data || error.message);
+        }
     };
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            // Validate file extension (allowed: mp3, wav, m4a)
-            const allowedExtensions = ['mp3', 'wav'];
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            if (!allowedExtensions.includes(fileExtension)) {
-                alert("Invalid file type. Please upload a music file (mp3, wav, m4a).");
-                // Reset file input value so the user can try again.
-                fileInputRef.current.value = "";
-                return;
-            }
-
-            // If file type is valid, simulate upload
-            setUploadedFileName(file.name);
-            setUploading(true);
-            // Simulate an upload delay (e.g., 3 seconds)
-            setTimeout(() => {
-                setUploading(false);
-            }, 3000);
-        }
+    const handleButtonClick = () => {
+        fileInputRef.current.click(); // ✅ Open file picker when button is clicked
     };
 
     return (
         <div
             style={{
-                backgroundColor: '#000',
-                color: '#fff',
-                minHeight: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                backgroundColor: "#000",
+                color: "#fff",
+                minHeight: "100vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
             <AnimatedContent
@@ -56,36 +51,21 @@ function Canvas() {
                 scale={1.1}
                 threshold={0.2}
             >
-                {uploading ? (
-                    <div className="upload-status">
-                        <div className="spinner"></div>
-                        <div className="upload-message">
-                            Uploading {uploadedFileName}...
-                        </div>
-                    </div>
-                ) : uploadedFileName ? (
-                    <div className="file-selected">
-                        File Selected: {uploadedFileName}
-                    </div>
-                ) : (
-                    <div className="tooltip-container">
-                        <button onClick={handleButtonClick} className="button">
-                            +
-                        </button>
-                        <div className="tooltip-content">
-                            Click to upload a file
-                        </div>
-                    </div>
-                )}
                 <input
                     type="file"
+                    accept="audio/*"
                     ref={fileInputRef}
-                    onChange={handleFileChange}
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }} // ✅ Hidden input field
+                    onChange={handleFileSelect}
                 />
+
+                <div className="tooltip-container">
+                    <button className="button" onClick={handleButtonClick}>+</button>
+                    <div className="tooltip-content">Click to select and upload an audio file</div>
+                </div>
             </AnimatedContent>
         </div>
     );
-}
+};
 
 export default Canvas;

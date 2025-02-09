@@ -1,10 +1,9 @@
 from django.urls import path
+from django.urls.conf import include
+
 from . import views
-from django.conf.urls.static import static
-from django.conf import settings
 
 urlpatterns = [
      path('', views.index, name='index'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
+     path('api/', views.PostView.as_view(), name= 'posts_list'),
+     path('api/', include('api.urls')),]
