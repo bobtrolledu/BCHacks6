@@ -1,0 +1,9 @@
+body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-text{
+    font-style: initial;
+    font-weight: bolder;
+}

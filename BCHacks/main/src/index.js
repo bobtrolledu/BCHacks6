@@ -3,14 +3,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Dock from './blocks/Components/Dock/Dock';
-import { HiOutlineHome, HiOutlineCog, HiOutlineFolder, HiOutlineDocument } from "react-icons/hi";
-import LandingPage from "./LandingPage";
-import Canvas from "./Canvas";
+import {
+    HiOutlineHome,
+    HiOutlineCog,
+    HiOutlineFolder,
+    HiOutlineDocument } from "react-icons/hi";
 import {
     BrowserRouter as Router,
     Routes,
     Route,
 } from 'react-router-dom';
+
+import LandingPage from "./Pages/LandingPage";
+import Canvas from "./Pages/Canvas";
+import Gallery from "./Pages/Gallery";
+import Settings from "./Pages/Settings";
 
 // Replace your Go() function with one that navigates by updating the URL
 function Go(path) {
@@ -23,8 +30,8 @@ function Go(path) {
 const items = [
     { icon: <HiOutlineHome color={'white'} size={28} />, label: 'Home', onClick: () => Go('/') },
     { icon: <HiOutlineDocument color={"white"} size={28} />, label: 'Canvas', onClick: () => Go('/canvas') },
-    { icon: <HiOutlineFolder color={"white"} size={28} />, label: 'Gallery', onClick: () => alert('Profile!') },
-    { icon: <HiOutlineCog color={"white"} size={28} />, label: 'Settings', onClick: () => alert('Settings!') },
+    { icon: <HiOutlineFolder color={"white"} size={28} />, label: 'Gallery', onClick: () => Go('/gallery') },
+    { icon: <HiOutlineCog color={"white"} size={28} />, label: 'Settings', onClick: () => Go('/settings') },
 ];
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -35,6 +42,8 @@ root.render(
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/canvas" element={<Canvas />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
             {/* Render the Dock outside the Routes so that it always appears */}
             <Dock

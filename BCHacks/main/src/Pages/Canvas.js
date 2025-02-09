@@ -30,7 +30,6 @@ function Canvas() {
             <div>
                 <button
                     onClick={handleButtonClick}
-                    style={{ fontSize: '2rem', padding: '1rem 2rem' }}
                 >
                     Upload File
                 </button>

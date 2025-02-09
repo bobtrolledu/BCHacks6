@@ -1,5 +1,5 @@
-import Orb from "./blocks/Backgrounds/Orb/Orb";
-import GradientText from "./blocks/TextAnimations/GradientText/GradientText";
+import Orb from "../blocks/Backgrounds/Orb/Orb";
+import GradientText from "../blocks/TextAnimations/GradientText/GradientText";
 import React from "react";
 import './LandingPage.css';
 
@@ -39,7 +39,7 @@ function LandingPage() {
                         showBorder={false}
                         className="hero-text"
                     >
-                        chromesthesia
+                        chromesthesia.
                     </GradientText>
                 </div>
             </div>
