@@ -73,7 +73,7 @@ def process_audio(filepath):
 
     # Post image to /api/slates
     files = {"image": open(image_path, "rb")}
-    data = {"description": f"Generated from {os.path.basename(filepath)}"}
+    data = {"description": f"Generated from {os.path.basename(filepath)}, BPM: {bpm}"}
     response = requests.post("http://localhost:8000/api/slates/", files=files, data=data)
 
     if response.status_code == 201:

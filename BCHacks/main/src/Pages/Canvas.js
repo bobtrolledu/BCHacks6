@@ -61,6 +61,7 @@ const Canvas = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+
             }}
         >
             {latestSlate && (
@@ -68,10 +69,10 @@ const Canvas = () => {
           imageSrc={latestSlate.image}
           altText=""
           captionText={latestSlate.description}
-          containerHeight="300px"
-          containerWidth="300px"
-          imageHeight="300px"
-          imageWidth="300px"
+          containerHeight="60vh"
+          containerWidth="60vh"
+          imageHeight="60vh"
+          imageWidth="60vh"
           rotateAmplitude={12}
           scaleOnHover={1.2}
           showMobileWarning={false}
