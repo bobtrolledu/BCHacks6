@@ -15,9 +15,20 @@ function Canvas() {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            // Validate file extension (allowed: mp3, wav, m4a)
+            const allowedExtensions = ['mp3', 'wav'];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            if (!allowedExtensions.includes(fileExtension)) {
+                alert("Invalid file type. Please upload a music file (mp3, wav, m4a).");
+                // Reset file input value so the user can try again.
+                fileInputRef.current.value = "";
+                return;
+            }
+
+            // If file type is valid, simulate upload
             setUploadedFileName(file.name);
             setUploading(true);
-            // Simulate an upload delay (3 seconds)
+            // Simulate an upload delay (e.g., 3 seconds)
             setTimeout(() => {
                 setUploading(false);
             }, 3000);
