@@ -67,7 +67,7 @@ const Canvas = () => {
         <TiltedCard
           imageSrc={latestSlate.image}
           altText=""
-          captionText={`${latestSlate.name}:\n${latestSlate.description}`}
+          captionText={latestSlate.description}
           containerHeight="300px"
           containerWidth="300px"
           imageHeight="300px"
