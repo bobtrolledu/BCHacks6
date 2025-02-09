@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hero-text {
+  font-size: 5vh;
+  font-weight: 1000;
+}
